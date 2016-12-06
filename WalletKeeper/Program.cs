@@ -20,6 +20,7 @@ namespace WalletKeeperBot
         static void Main(string[] args)
         {
             Bot.OnMessage += BotOnMessageReceived;
+            Bot.OnMessage += BotOnPhotoReceived;
 
             var me = Bot.GetMeAsync().Result;
             Console.Title = me.Username;
@@ -49,6 +50,17 @@ namespace WalletKeeperBot
                     await Bot.SendDocumentAsync(message.Chat.Id, fts, "Nice spending brah");
                 }
             }
+        }
+        private static async void BotOnPhotoReceived(object sender, MessageEventArgs messageEventArgs)
+        {
+            var message = messageEventArgs.Message;
+
+            if (message == null || message.Type != MessageType.PhotoMessage) return;
+
+            await Bot.SendChatActionAsync(message.Chat.Id, ChatAction.Typing);
+            const string weVeGotYourPhoto = "He have got your photo! Congratz!";
+
+            await Bot.SendTextMessageAsync(message.Chat.Id, weVeGotYourPhoto);
         }
 
     }
