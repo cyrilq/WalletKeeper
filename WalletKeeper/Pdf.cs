@@ -16,10 +16,8 @@ namespace WalletKeeper
         {
             //create a document object
             var doc = new Document();
-            //get the current directory
-            string path = Environment.CurrentDirectory;
             //get PdfWriter object
-            PdfWriter.GetInstance(doc, new FileStream(path + "/pdfdoc.pdf", FileMode.Create));
+            PdfWriter.GetInstance(doc, new FileStream("../../DOCS/pdfdoc.pdf", FileMode.Create));
             //open the document for writing
             doc.Open();
             //write a paragraph to the document
@@ -27,7 +25,7 @@ namespace WalletKeeper
             //close the document
             doc.Close();
             //view the result pdf file
-            System.Diagnostics.Process.Start(path + "/pdfdoc.pdf");
+            //System.Diagnostics.Process.Start("../../DOCS/pdfdoc.pdf");
         }
     }
 }

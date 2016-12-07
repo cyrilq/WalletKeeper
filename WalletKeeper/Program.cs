@@ -18,8 +18,6 @@ namespace WalletKeeperBot
             Bot.OnMessage += BotOnMessageReceived;
             Bot.OnMessage += BotOnPhotoReceived;
 
-            WalletKeeper.Pdf.GeneratePDF();
-
             var me = Bot.GetMeAsync().Result;
             Console.Title = me.Username;
 
@@ -35,11 +33,12 @@ namespace WalletKeeperBot
 
             if (message == null || message.Type != MessageType.TextMessage) return;
 
-            if (message.Text.StartsWith("/spending"))
+            else if (message.Text.StartsWith("/spending"))
             {
                 await Bot.SendChatActionAsync(message.Chat.Id, ChatAction.UploadDocument);
 
-                const string file = @"../../DOCS/resumen23_Cirilo.pdf";
+                WalletKeeper.Pdf.GeneratePDF();
+                const string file = @"../../DOCS/pdfdoc.pdf";
 
                 var fileName = file.Split('\\').Last();
 
@@ -49,6 +48,15 @@ namespace WalletKeeperBot
                     await Bot.SendDocumentAsync(message.Chat.Id, fts, "Nice spending brah");
                 }
             }
+            else if (message.Text.StartsWith("/start"))
+            {
+                await Bot.SendTextMessageAsync(message.Chat.Id, $"Hello, {message.Chat.FirstName}" + WalletKeeper.Constants.START_MESSAGE);
+            }
+            else if (message.Text.StartsWith("/help"))
+            {
+                await Bot.SendTextMessageAsync(message.Chat.Id, WalletKeeper.Constants.HELP_MESSAGE);
+            }
+
         }
         private static async void BotOnPhotoReceived(object sender, MessageEventArgs messageEventArgs)
         {
@@ -60,7 +68,7 @@ namespace WalletKeeperBot
             const string weVeGotYourPhoto = "He have got your photo! Congratz!";
 
             await Bot.SendTextMessageAsync(message.Chat.Id, weVeGotYourPhoto);
-            //await Bot.SendDocumentAsync(message.Chat.Id, )
+            
         }
 
     }
