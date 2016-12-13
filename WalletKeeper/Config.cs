@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace WalletKeeper
 {
-    class TrialFile
+    class Config
     {
-        string API_KEY = "293942981:AAECoeXWb-5WJY1Az8JPyvUoaZ-du2-tuCc";
+        public const string API_KEY = "293942981:AAECoeXWb-5WJY1Az8JPyvUoaZ-du2-tuCc";
     }
 }

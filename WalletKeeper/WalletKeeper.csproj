@@ -60,7 +60,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="TrialFile.cs" />
+    <Compile Include="Config.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Pdf.cs" />
     <Compile Include="Program.cs" />
