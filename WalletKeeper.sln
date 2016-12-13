@@ -5,7 +5,7 @@ VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WalletKeeper", "WalletKeeper\WalletKeeper.csproj", "{80706E9F-B8A3-408A-876D-91C3EBC383BE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TextDetection", "..\..\..\Desktop\WalletKeeper-master\API\vision logic\vision\textDetection\TextDetection.csproj", "{D56B4007-704D-4E1E-8C73-B976030D0885}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TextDetection", "TextDetection\TextDetection.csproj", "{D56B4007-704D-4E1E-8C73-B976030D0885}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
