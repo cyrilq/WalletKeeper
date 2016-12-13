@@ -1,13 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WalletKeeper", "WalletKeeper\WalletKeeper.csproj", "{80706E9F-B8A3-408A-876D-91C3EBC383BE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TextDetection", "TextDetection\TextDetection.csproj", "{D56B4007-704D-4E1E-8C73-B976030D0885}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataBase", "..\..\..\Desktop\DataBase\DataBase.csproj", "{0E438B92-C35E-4157-8FB9-22E90530324C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataBase", "DataBase\DataBase.csproj", "{0E438B92-C35E-4157-8FB9-22E90530324C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
