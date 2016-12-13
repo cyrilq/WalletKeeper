@@ -37,13 +37,17 @@ namespace GoogleCloudSamples
             byte[] imageArray = System.IO.File.ReadAllBytes(imagePath);
             string imageContent = Convert.ToBase64String(imageArray);
             // Post text detection request to the Vision API
+            ImageContext imageContext = new ImageContext();
+            List<String> languages=new List<String>();
+            languages.Add("ru");
             var responses = vision.Images.Annotate(
                 new BatchAnnotateImagesRequest()
                 {
                     Requests = new[] {
                     new AnnotateImageRequest() {
                         Features = new [] { new Feature() { Type ="TEXT_DETECTION"} },
-                        Image = new Image() { Content = imageContent }
+                        Image = new Image() { Content = imageContent },
+                        ImageContext = new ImageContext { LanguageHints=languages }
                     }
                }
                 }).Execute();
@@ -60,7 +64,7 @@ namespace GoogleCloudSamples
             System.Environment.SetEnvironmentVariable(GOOGLE_PROJECT_ID, @"my - trial - project - 151511");
             Console.WriteLine(System.Environment.GetEnvironmentVariable(GOOGLE_APPLICATION_CREDENTIALS));
             TextDetection sample = new TextDetection();
-            string imagePath= @"..\..\test\data\test.jpg";
+            string imagePath= @"..\..\test\data\test2.jpg";
             // Create a new Cloud Vision client authorized via Application 
             // Default Credentials
             VisionService vision = sample.CreateAuthorizedClient();
