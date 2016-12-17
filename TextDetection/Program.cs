@@ -54,6 +54,43 @@ namespace GoogleCloudSamples
             return responses.Responses;
         }
 
+        public string photo2string(string imagePath) {
+            TextDetection sample = new TextDetection();
+            // Create a new Cloud Vision client authorized via Application 
+            // Default Credentials
+            VisionService vision = sample.CreateAuthorizedClient();
+            // Use the client to get text annotations for the given image
+            IList<AnnotateImageResponse> result = sample.DetectText(
+                vision, imagePath);
+            // Check for valid text annotations in response
+            string s = "";
+            if (result[0].TextAnnotations != null)
+            {
+                // Loop through and output text annotations for the image
+                foreach (var response in result)
+                {
+                    Console.WriteLine("Text found in image: " + imagePath);
+                    //Console.WriteLine();
+                    foreach (var text in response.TextAnnotations)
+                    {
+                        s = s + text.Description + " ";
+                    }
+                }
+            }
+            else
+            {
+                if (result[0].Error == null)
+                {
+                    s = "No text found.";
+                }
+                else
+                {
+                    s = "Not a valid image.";
+                }
+            }
+            return s;
+        }
+
         private static void Main(string[] args)
         {
 
