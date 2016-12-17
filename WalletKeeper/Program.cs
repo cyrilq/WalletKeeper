@@ -5,7 +5,7 @@ using Telegram.Bot;
 using Telegram.Bot.Args;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
-
+using GoogleCloudSamples;
 using System.Drawing;
 using System.Net;
 
@@ -76,8 +76,13 @@ namespace WalletKeeperBot
             await Bot.SendChatActionAsync(message.Chat.Id, ChatAction.Typing);
 
             await Bot.SendTextMessageAsync(message.Chat.Id, WalletKeeper.Constants.WE_HAVE_GOT_YOUR_MESSAGE);
-            
-        }
+
+            string imagePath = $"../../Photo/img{message.Chat.Id}{fileId}.jpg";
+            TextDetection newTD = new TextDetection();
+            string text = newTD.photo2string(imagePath);
+            Console.WriteLine(text);
+
+           }
 
     }
 }
