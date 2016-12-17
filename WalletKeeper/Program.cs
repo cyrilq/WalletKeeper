@@ -67,19 +67,24 @@ namespace WalletKeeperBot
 
             if (message == null || message.Type != MessageType.PhotoMessage) return;
 
-            var file_id = message.Photo[message.Photo.Length-1].FileId;
-            string request_string = $"https://api.telegram.org/bot{WalletKeeper.Config.API_KEY}/getFile?file_id={file_id}";
-            Console.WriteLine(request_string);
-            using (var client = new WebClient())
+            var fileId = message.Photo[message.Photo.Length - 1].FileId;
+            
+            var file = await Bot.GetFileAsync(fileId);
+
+            var stream = file.FileStream;
+            using (Stream output = new FileStream($"../../Photo/img{message.Chat.Id}{fileId}.jpg", FileMode.Append))
             {
-                client.DownloadFile(request_string, $"photo{message.Chat.Id}");
-                Console.WriteLine("Photo was downloaded!");
+                byte[] buffer = new byte[32 * 1024];
+                int read;
+
+                while ((read = stream.Read(buffer, 0, buffer.Length)) > 0)
+                {
+                    output.Write(buffer, 0, read);
+                }
             }
-            //пример ссылки, по которой можно загрузить файл из ТГ файл из телеграма
-            /*https://api.telegram.org/file/293942981:AAECoeXWb-5WJY1Az8JPyvUoaZ-du2-tuCc/photo/file_7.jpg */
-            //полезная статья
-            //http://stackoverflow.com/questions/34170546/getfile-method-in-telegram-bot-api
+
             await Bot.SendChatActionAsync(message.Chat.Id, ChatAction.Typing);
+
             const string weVeGotYourPhoto = "He have got your photo! Congratz!";
 
             await Bot.SendTextMessageAsync(message.Chat.Id, weVeGotYourPhoto);
