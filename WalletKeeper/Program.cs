@@ -38,18 +38,7 @@ namespace WalletKeeperBot
 
             else if (message.Text.StartsWith("/spending"))
             {
-                await Bot.SendChatActionAsync(message.Chat.Id, ChatAction.UploadDocument);
-
-                WalletKeeper.Pdf.GeneratePDF();
-                const string file = @"../../DOCS/pdfdoc.pdf";
-
-                var fileName = file.Split('\\').Last();
-
-                using (var fileStream = new FileStream(file, FileMode.Open, FileAccess.Read, FileShare.Read))
-                {
-                    var fts = new FileToSend(fileName, fileStream);
-                    await Bot.SendDocumentAsync(message.Chat.Id, fts, "Nice spending brah");
-                }
+                //TODO: add text message about user spendings
             }
             else if (message.Text.StartsWith("/start"))
             {
@@ -72,6 +61,7 @@ namespace WalletKeeperBot
             var file = await Bot.GetFileAsync(fileId);
 
             var stream = file.FileStream;
+
             using (Stream output = new FileStream($"../../Photo/img{message.Chat.Id}{fileId}.jpg", FileMode.Append))
             {
                 byte[] buffer = new byte[32 * 1024];
@@ -85,9 +75,7 @@ namespace WalletKeeperBot
 
             await Bot.SendChatActionAsync(message.Chat.Id, ChatAction.Typing);
 
-            const string weVeGotYourPhoto = "He have got your photo! Congratz!";
-
-            await Bot.SendTextMessageAsync(message.Chat.Id, weVeGotYourPhoto);
+            await Bot.SendTextMessageAsync(message.Chat.Id, WalletKeeper.Constants.WE_HAVE_GOT_YOUR_MESSAGE);
             
         }
 

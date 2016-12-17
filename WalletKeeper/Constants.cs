@@ -18,5 +18,7 @@ namespace WalletKeeper
         public const string HELP_MESSAGE =
         @"Send me a photo of a new check to have a new expense item. 
         Press /spending to get detalized information about your expensions.";
+
+        public const string WE_HAVE_GOT_YOUR_MESSAGE = "Thank you! We have got your message and send you an answer soon.";
     }
 }
