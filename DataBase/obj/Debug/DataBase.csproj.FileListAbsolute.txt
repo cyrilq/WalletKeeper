@@ -1,0 +1,24 @@
+C:\Users\Polina\Desktop\Result\WalletKeeper-master\DataBase\bin\Debug\DataBase.exe.config
+C:\Users\Polina\Desktop\Result\WalletKeeper-master\DataBase\bin\Debug\DataBase.exe
+C:\Users\Polina\Desktop\Result\WalletKeeper-master\DataBase\bin\Debug\DataBase.pdb
+C:\Users\Polina\Desktop\Result\WalletKeeper-master\DataBase\obj\Debug\DataBase.csprojResolveAssemblyReference.cache
+C:\Users\Polina\Desktop\Result\WalletKeeper-master\DataBase\obj\Debug\DataBase.exe
+C:\Users\Polina\Desktop\Result\WalletKeeper-master\DataBase\obj\Debug\DataBase.pdb
+C:\Users\Polina\Desktop\Новая папка\Result\WalletKeeper-master\DataBase\bin\Debug\DataBase.exe.config
+C:\Users\Polina\Desktop\Новая папка\Result\WalletKeeper-master\DataBase\bin\Debug\DataBase.exe
+C:\Users\Polina\Desktop\Новая папка\Result\WalletKeeper-master\DataBase\bin\Debug\DataBase.pdb
+C:\Users\Polina\Desktop\Новая папка\Result\WalletKeeper-master\DataBase\obj\Debug\DataBase.csprojResolveAssemblyReference.cache
+C:\Users\Polina\Desktop\Новая папка\Result\WalletKeeper-master\DataBase\obj\Debug\DataBase.exe
+C:\Users\Polina\Desktop\Новая папка\Result\WalletKeeper-master\DataBase\obj\Debug\DataBase.pdb
+C:\Users\user\Desktop\Result\WalletKeeper-master\DataBase\obj\Debug\DataBase.csprojResolveAssemblyReference.cache
+C:\Users\user\Desktop\Result\WalletKeeper-master\DataBase\obj\Debug\DataBase.exe
+C:\Users\user\Desktop\Result\WalletKeeper-master\DataBase\obj\Debug\DataBase.pdb
+C:\Users\user\Desktop\Result\WalletKeeper-master\DataBase\bin\Debug\DataBase.exe.config
+C:\Users\user\Desktop\Result\WalletKeeper-master\DataBase\bin\Debug\DataBase.exe
+C:\Users\user\Desktop\Result\WalletKeeper-master\DataBase\bin\Debug\DataBase.pdb
+C:\Users\user\Desktop\ResultA\WalletKeeper-master\DataBase\bin\Debug\DataBase.exe.config
+C:\Users\user\Desktop\ResultA\WalletKeeper-master\DataBase\bin\Debug\DataBase.exe
+C:\Users\user\Desktop\ResultA\WalletKeeper-master\DataBase\bin\Debug\DataBase.pdb
+C:\Users\user\Desktop\ResultA\WalletKeeper-master\DataBase\obj\Debug\DataBase.csprojResolveAssemblyReference.cache
+C:\Users\user\Desktop\ResultA\WalletKeeper-master\DataBase\obj\Debug\DataBase.exe
+C:\Users\user\Desktop\ResultA\WalletKeeper-master\DataBase\obj\Debug\DataBase.pdb
