@@ -126,8 +126,6 @@ namespace WalletKeeperBot
 
             string result = ParseString(text);
 
-            double result1 = Double.Parse(result);
-
             await Bot.SendTextMessageAsync(message.Chat.Id, result);
 
             Console.WriteLine(text);
