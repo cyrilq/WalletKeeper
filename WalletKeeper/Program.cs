@@ -77,9 +77,9 @@ namespace WalletKeeperBot
             else if (message.Text.StartsWith("/spending"))
             {
                
-                    //TODO: add text message about user spendings
-
-                    DataBaseCon.SelectRows((int)message.Chat.Id);
+		string str = DataBaseCon.SelectRows((int)message.Chat.Id);
+                if (strToSend.IsNullOrEmpty) str = "No data yet";
+		    
                 await Bot.SendTextMessageAsync(message.Chat.Id, DataBaseCon.SelectRows((int)message.Chat.Id));
 
             }
