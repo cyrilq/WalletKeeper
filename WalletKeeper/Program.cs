@@ -13,7 +13,39 @@ namespace WalletKeeperBot
 {
     class Program
     {
-
+        public static string ParseString(string str)
+		{
+			var splittedString = str.ToLower().Split(new char[] { '\n' });
+			var targetWords = new List<string>()
+			{
+				"итог", "итого", "итог:", "итого:"
+			};
+			if (!splittedString.Intersect(targetWords).Any())
+				return "Cannot get the price from the photo.\nTry again please.";
+			else 
+			{
+				//int indexOfSum = 0;
+				double Sum = 0.0;
+				int indexOfResult = 0;//Array.IndexOf(splittedString, targetWords);
+				for (int i = 0; i < targetWords.Count; i++)
+				{
+					indexOfResult = Array.IndexOf(splittedString, targetWords[i]);
+					if (indexOfResult > -1) break;
+				}
+				foreach (var item in splittedString)
+				{
+					Console.WriteLine(item);
+				}
+				Console.WriteLine(indexOfResult);
+				if (double.TryParse(splittedString[indexOfResult - 1], out Sum) ||
+					double.TryParse(splittedString[indexOfResult + 1], out Sum))
+				{
+					return $"Sum is {Sum} rubles.";
+				}
+				else return "Sum is undefined";
+			}
+        }
+        
         private static readonly TelegramBotClient Bot = new TelegramBotClient(WalletKeeper.Config.API_KEY);
 
         static void Main(string[] args)
@@ -83,6 +115,7 @@ namespace WalletKeeperBot
             Console.WriteLine(text);
 
            }
+        
 
     }
 }
