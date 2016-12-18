@@ -8,6 +8,7 @@ using Telegram.Bot.Types.Enums;
 using GoogleCloudSamples;
 using System.Drawing;
 using System.Net;
+using System.Collections.Generic;
 
 namespace WalletKeeperBot
 {
