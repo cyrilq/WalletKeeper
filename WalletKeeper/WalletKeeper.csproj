@@ -69,7 +69,11 @@
     <Folder Include="Photo\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\Desktop\Result\WalletKeeper-master\TextDetection\TextDetection.csproj">
+    <ProjectReference Include="..\DataBase\DataBase.csproj">
+      <Project>{0e438b92-c35e-4157-8fb9-22e90530324c}</Project>
+      <Name>DataBase</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TextDetection\TextDetection.csproj">
       <Project>{d56b4007-704d-4e1e-8c73-b976030d0885}</Project>
       <Name>TextDetection</Name>
     </ProjectReference>

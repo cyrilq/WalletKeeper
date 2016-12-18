@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using DataBase;
 using Telegram.Bot;
 using Telegram.Bot.Args;
 using Telegram.Bot.Types;
@@ -9,6 +10,7 @@ using GoogleCloudSamples;
 using System.Drawing;
 using System.Net;
 using System.Collections.Generic;
+using DataBaseCon = DataBase.Program;
 
 namespace WalletKeeperBot
 {
@@ -26,20 +28,23 @@ namespace WalletKeeperBot
 			else 
 			{
 				//int indexOfSum = 0;
-				double Sum = 0.0;
+				float Sum = 0;
 				int indexOfResult = 0;//Array.IndexOf(splittedString, targetWords);
 				for (int i = 0; i < targetWords.Count; i++)
 				{
 					indexOfResult = Array.IndexOf(splittedString, targetWords[i]);
 					if (indexOfResult > -1) break;
 				}
-				foreach (var item in splittedString)
-				{
-					Console.WriteLine(item);
-				}
-				Console.WriteLine(indexOfResult);
-				if (double.TryParse(splittedString[indexOfResult - 1], out Sum) ||
-					double.TryParse(splittedString[indexOfResult + 1], out Sum))
+                {
+                    //double k;
+                    try
+                    {
+                        Console.WriteLine(Convert.ToDouble(splittedString[indexOfResult - 1].Substring(0, splittedString[indexOfResult - 1].Length - 3)));
+                    }
+                    catch { }
+                }
+                if (float.TryParse(splittedString[indexOfResult - 1].Substring(0, splittedString[indexOfResult - 1].Length - 3), out Sum) ||
+					float.TryParse(splittedString[indexOfResult + 1].Substring(0, splittedString[indexOfResult + 1].Length - 3), out Sum))
 				{
 					return $"Sum is {Sum} rubles.";
 				}
@@ -71,7 +76,12 @@ namespace WalletKeeperBot
 
             else if (message.Text.StartsWith("/spending"))
             {
-                //TODO: add text message about user spendings
+               
+                    //TODO: add text message about user spendings
+
+                    DataBaseCon.SelectRows((int)message.Chat.Id);
+                await Bot.SendTextMessageAsync(message.Chat.Id, DataBaseCon.SelectRows((int)message.Chat.Id));
+
             }
             else if (message.Text.StartsWith("/start"))
             {
@@ -113,8 +123,21 @@ namespace WalletKeeperBot
             string imagePath = $"../../Photo/img{message.Chat.Id}{fileId}.jpg";
             TextDetection newTD = new TextDetection();
             string text = newTD.photo2string(imagePath);
-            Console.WriteLine(text);
 
+            string result = ParseString(text);
+
+            double result1 = Double.Parse(result);
+
+            await Bot.SendTextMessageAsync(message.Chat.Id, result);
+
+            Console.WriteLine(text);
+            DataBaseCon pr = new DataBaseCon();
+            DataBaseCon.InsertUser((int)message.Chat.Id, message.Chat.FirstName);
+            //DataBaseCon.InsertAmount((int)message.Chat.Id, result1);
+            //.SelectRows((int)message.Chat.Id);
+            //DataBaseCon.DeleteRows((int)message.Chat.Id);
+            
+            
            }
         
 
