@@ -6,8 +6,9 @@ namespace DataBase
 {
     public class Program
     {
-        static public void Main() {
-            
+        static public void Main()
+        {
+
         }
 
 
@@ -37,7 +38,7 @@ namespace DataBase
                     }
                     string str = sb.ToString();
                     return str;
-                    
+
                 }
             }
 
@@ -57,14 +58,15 @@ namespace DataBase
                 {
                     command.Connection = connection;
                     command.CommandType = DT.CommandType.Text;
-                    command.CommandText = $@"INSERT INTO [dbo].[User] (Name, User_id) VALUES(@Name, @User_id);";
+                    command.CommandText = $@"IF NOT EXISTS (SELECT name FROM [dbo].[User] WHERE User_id = '{User_id}') 
+                                            INSERT INTO [dbo].[User] (Name, User_id) VALUES(@Name, @User_id);";
 
                     parameter = new QC.SqlParameter("@Name", DT.SqlDbType.NChar, 50);
                     parameter.Value = Name;
                     command.Parameters.Add(parameter);
 
                     parameter = new QC.SqlParameter("@User_id", DT.SqlDbType.Int);
-                    parameter.Value = User_id;
+                    parameter.Value = (int)User_id;
                     command.Parameters.Add(parameter);
                     QC.SqlDataReader reader = command.ExecuteReader();
                     Console.WriteLine("Insert - OK");

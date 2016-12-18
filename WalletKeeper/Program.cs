@@ -17,24 +17,24 @@ namespace WalletKeeperBot
     class Program
     {
         public static string ParseString(string str)
-		{
-			var splittedString = str.ToLower().Split(new char[] { '\n' });
-			var targetWords = new List<string>()
-			{
-				"итог", "итого", "итог:", "итого:"
-			};
-			if (!splittedString.Intersect(targetWords).Any())
-				return "Cannot get the price from the photo.\nTry again please.";
-			else 
-			{
-				//int indexOfSum = 0;
-				float Sum = 0;
-				int indexOfResult = 0;//Array.IndexOf(splittedString, targetWords);
-				for (int i = 0; i < targetWords.Count; i++)
-				{
-					indexOfResult = Array.IndexOf(splittedString, targetWords[i]);
-					if (indexOfResult > -1) break;
-				}
+        {
+            var splittedString = str.ToLower().Split(new char[] { '\n' });
+            var targetWords = new List<string>()
+            {
+                "итог", "итого", "итог:", "итого:"
+            };
+            if (!splittedString.Intersect(targetWords).Any())
+                return "Cannot get the price from the photo.\nTry again please.";
+            else
+            {
+                //int indexOfSum = 0;
+                float Sum = 0;
+                int indexOfResult = 0;//Array.IndexOf(splittedString, targetWords);
+                for (int i = 0; i < targetWords.Count; i++)
+                {
+                    indexOfResult = Array.IndexOf(splittedString, targetWords[i]);
+                    if (indexOfResult > -1) break;
+                }
                 {
                     //double k;
                     try
@@ -44,14 +44,14 @@ namespace WalletKeeperBot
                     catch { }
                 }
                 if (float.TryParse(splittedString[indexOfResult - 1].Substring(0, splittedString[indexOfResult - 1].Length - 3), out Sum) ||
-					float.TryParse(splittedString[indexOfResult + 1].Substring(0, splittedString[indexOfResult + 1].Length - 3), out Sum))
-				{
-					return $"Sum is {Sum} rubles.";
-				}
-				else return "Sum is undefined";
-			}
+                    float.TryParse(splittedString[indexOfResult + 1].Substring(0, splittedString[indexOfResult + 1].Length - 3), out Sum))
+                {
+                    return $"{Sum}";
+                }
+                else return $"0";
+            }
         }
-        
+
         private static readonly TelegramBotClient Bot = new TelegramBotClient(WalletKeeper.Config.API_KEY);
 
         static void Main(string[] args)
@@ -70,21 +70,22 @@ namespace WalletKeeperBot
         private static async void BotOnMessageReceived(object sender, MessageEventArgs messageEventArgs)
         {
             var message = messageEventArgs.Message;
-            
+
 
             if (message == null || message.Type != MessageType.TextMessage) return;
 
             else if (message.Text.StartsWith("/spending"))
             {
-               
-		string str = DataBaseCon.SelectRows((int)message.Chat.Id);
-                if (strToSend.IsNullOrEmpty) str = "No data yet";
-		    
+                //int UserId = 123;
+                //TODO: add text message about user spendings
+                //(int)message.Chat.Id)
+                //DataBaseCon.SelectRows((int)message.Chat.Id);
                 await Bot.SendTextMessageAsync(message.Chat.Id, DataBaseCon.SelectRows((int)message.Chat.Id));
 
             }
             else if (message.Text.StartsWith("/start"))
             {
+                DataBaseCon.InsertUser((int)message.Chat.Id, message.Chat.FirstName);
                 await Bot.SendTextMessageAsync(message.Chat.Id, $"Hello, {message.Chat.FirstName}" + WalletKeeper.Constants.START_MESSAGE);
             }
             else if (message.Text.StartsWith("/help"))
@@ -100,7 +101,7 @@ namespace WalletKeeperBot
             if (message == null || message.Type != MessageType.PhotoMessage) return;
 
             var fileId = message.Photo[message.Photo.Length - 1].FileId;
-            
+
             var file = await Bot.GetFileAsync(fileId);
 
             var stream = file.FileStream;
@@ -122,22 +123,25 @@ namespace WalletKeeperBot
 
             string imagePath = $"../../Photo/img{message.Chat.Id}{fileId}.jpg";
             TextDetection newTD = new TextDetection();
+
             string text = newTD.photo2string(imagePath);
 
             string result = ParseString(text);
+            double result1 = Convert.ToDouble(result);
+            DataBaseCon.InsertAmount((int)message.Chat.Id, result1);
 
-            await Bot.SendTextMessageAsync(message.Chat.Id, result);
+            await Bot.SendTextMessageAsync(message.Chat.Id, WalletKeeper.Constants.IT_IS_DONE);
 
-            Console.WriteLine(text);
-            DataBaseCon pr = new DataBaseCon();
-            DataBaseCon.InsertUser((int)message.Chat.Id, message.Chat.FirstName);
-            //DataBaseCon.InsertAmount((int)message.Chat.Id, result1);
+
+
+
+
             //.SelectRows((int)message.Chat.Id);
             //DataBaseCon.DeleteRows((int)message.Chat.Id);
-            
-            
-           }
-        
+
+
+        }
+
 
     }
 }

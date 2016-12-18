@@ -70,14 +70,14 @@ namespace GoogleCloudSamples
             else
             {
                 if (result[0].Error == null)
-                s = "No text found.";
+                    s = "No text found.";
                 else
-                s = "Not a valid image.";
+                    s = "Not a valid image.";
             }
             return s;
         }
 
-        
+
         private static void Main(string[] args)
         {
 
@@ -87,6 +87,6 @@ namespace GoogleCloudSamples
             Environment.SetEnvironmentVariable(GOOGLE_APPLICATION_CREDENTIALS, @"..\..\My trial project-b349a6699ad0.json");
             Environment.SetEnvironmentVariable(GOOGLE_PROJECT_ID, @"my-trial-project-151511");
         }
-        
+
     }
 }

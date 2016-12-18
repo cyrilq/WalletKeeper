@@ -8,7 +8,7 @@ namespace WalletKeeper
 {
     class Constants
     {
-        public const string START_MESSAGE = 
+        public const string START_MESSAGE =
         @"! Welcome to the WalletKeeper - your personal spending manager.
 
         You can send me photos of your checks and I will keep track of your expenses available for you every time you need it.
@@ -20,5 +20,7 @@ namespace WalletKeeper
         Press /spending to get detalized information about your expensions.";
 
         public const string WE_HAVE_GOT_YOUR_MESSAGE = "Thank you! We have got your message and send you an answer soon.";
+        public const string IT_IS_DONE = @"Thank you! It's Done!
+                                           Press /spending to get detalized information about your expensions.";
     }
 }
