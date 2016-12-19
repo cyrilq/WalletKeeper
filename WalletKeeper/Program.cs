@@ -93,6 +93,7 @@ namespace WalletKeeperBot
             {
                 DataBaseCon.DeleteRows((int)message.Chat.Id);
                 await Bot.SendTextMessageAsync(message.Chat.Id, WalletKeeper.Constants.DELETE_DONE);
+                DataBaseCon.InsertUser((int)message.Chat.Id, message.Chat.FirstName);
                 await Bot.SendTextMessageAsync(message.Chat.Id, $"Hello, {message.Chat.FirstName}" + WalletKeeper.Constants.START_MESSAGE);
             }
 
