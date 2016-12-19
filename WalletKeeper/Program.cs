@@ -131,7 +131,7 @@ namespace WalletKeeperBot
             string text = newTD.photo2string(imagePath);
 
             string result = ParseString(text);
-            double result1 = Convert.ToDouble(result);
+            double result1 = Math.Abs(Convert.ToDouble(result));
             DataBaseCon.InsertUser((int)message.Chat.Id, message.Chat.FirstName);
             DataBaseCon.InsertAmount((int)message.Chat.Id, result1);
 
