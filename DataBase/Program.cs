@@ -22,7 +22,6 @@ namespace DataBase
                 {
                     System.Text.StringBuilder sb = new System.Text.StringBuilder();
                     connection.Open();
-                    //int User_id = 12345678;
                     command.Connection = connection;
                     command.CommandType = DT.CommandType.Text;
                     command.CommandText =
@@ -36,7 +35,13 @@ namespace DataBase
                     {
                         sb.Append("").Append(String.Format("\n{0}\t{1} Р", reader.GetDateTime(0), reader.GetDouble(1)));
                     }
+                    
                     string str = sb.ToString();
+                    if (String.IsNullOrEmpty(str))
+                    {
+                        return String.Format("There is no information yet\nSend me a photo of a check!");
+                    }
+                    else
                     return str;
 
                 }

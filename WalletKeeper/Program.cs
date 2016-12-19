@@ -21,7 +21,7 @@ namespace WalletKeeperBot
             var splittedString = str.ToLower().Split(new char[] { '\n' });
             var targetWords = new List<string>()
             {
-                "итог", "итого", "итог:", "итого:"
+                "итог", "итого", "итог:", "итого:", "итого≡", "итог≡"
             };
             if (!splittedString.Intersect(targetWords).Any())
                 return "Cannot get the price from the photo.\nTry again please.";
@@ -76,10 +76,7 @@ namespace WalletKeeperBot
 
             else if (message.Text.StartsWith("/spending"))
             {
-                //int UserId = 123;
-                //TODO: add text message about user spendings
-                //(int)message.Chat.Id)
-                //DataBaseCon.SelectRows((int)message.Chat.Id);
+                
                 await Bot.SendTextMessageAsync(message.Chat.Id, DataBaseCon.SelectRows((int)message.Chat.Id));
 
             }
@@ -91,6 +88,12 @@ namespace WalletKeeperBot
             else if (message.Text.StartsWith("/help"))
             {
                 await Bot.SendTextMessageAsync(message.Chat.Id, WalletKeeper.Constants.HELP_MESSAGE);
+            }
+            else if (message.Text.StartsWith("/delete"))
+            {
+                DataBaseCon.DeleteRows((int)message.Chat.Id);
+                await Bot.SendTextMessageAsync(message.Chat.Id, WalletKeeper.Constants.DELETE_DONE);
+                await Bot.SendTextMessageAsync(message.Chat.Id, $"Hello, {message.Chat.FirstName}" + WalletKeeper.Constants.START_MESSAGE);
             }
 
         }
@@ -128,18 +131,11 @@ namespace WalletKeeperBot
 
             string result = ParseString(text);
             double result1 = Convert.ToDouble(result);
+            DataBaseCon.InsertUser((int)message.Chat.Id, message.Chat.FirstName);
             DataBaseCon.InsertAmount((int)message.Chat.Id, result1);
 
             await Bot.SendTextMessageAsync(message.Chat.Id, WalletKeeper.Constants.IT_IS_DONE);
-
-
-
-
-
-            //.SelectRows((int)message.Chat.Id);
-            //DataBaseCon.DeleteRows((int)message.Chat.Id);
-
-
+            
         }
 
 

@@ -28,3 +28,9 @@ C:\Users\user\Source\Repos\WalletKeeper9\DataBase\bin\Debug\DataBase.pdb
 C:\Users\user\Source\Repos\WalletKeeper9\DataBase\obj\Debug\DataBase.csprojResolveAssemblyReference.cache
 C:\Users\user\Source\Repos\WalletKeeper9\DataBase\obj\Debug\DataBase.exe
 C:\Users\user\Source\Repos\WalletKeeper9\DataBase\obj\Debug\DataBase.pdb
+C:\Users\user\Source\Repos\WalletKeeper10\DataBase\bin\Debug\DataBase.exe.config
+C:\Users\user\Source\Repos\WalletKeeper10\DataBase\bin\Debug\DataBase.exe
+C:\Users\user\Source\Repos\WalletKeeper10\DataBase\bin\Debug\DataBase.pdb
+C:\Users\user\Source\Repos\WalletKeeper10\DataBase\obj\Debug\DataBase.csprojResolveAssemblyReference.cache
+C:\Users\user\Source\Repos\WalletKeeper10\DataBase\obj\Debug\DataBase.exe
+C:\Users\user\Source\Repos\WalletKeeper10\DataBase\obj\Debug\DataBase.pdb
