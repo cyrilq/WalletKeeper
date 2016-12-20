@@ -48,7 +48,10 @@ namespace WalletKeeperBot
                 {
                     return $"{Sum}";
                 }
-                else return $"0";
+                else
+                {
+                    return $"0";
+                }
             }
         }
 
@@ -123,15 +126,17 @@ namespace WalletKeeperBot
 
             await Bot.SendChatActionAsync(message.Chat.Id, ChatAction.Typing);
 
-           
 
+            await Bot.SendTextMessageAsync(message.Chat.Id, WalletKeeper.Constants.IN_PROGRESS);
             string imagePath = $"../../Photo/img{message.Chat.Id}{fileId}.jpg";
+            
             TextDetection newTD = new TextDetection();
 
             string text = newTD.photo2string(imagePath);
 
             string result = ParseString(text);
             double result1 = Math.Abs(Convert.ToDouble(result));
+
             DataBaseCon.InsertUser((int)message.Chat.Id, message.Chat.FirstName);
             DataBaseCon.InsertAmount((int)message.Chat.Id, result1);
 

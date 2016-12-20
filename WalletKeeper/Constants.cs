@@ -20,7 +20,7 @@ namespace WalletKeeper
         Press /spending to get detalized information about your expensions.
         Press /delete if you want delete your information";
 
-       
+        public const string IN_PROGRESS = @"Wait a second...";
         public const string IT_IS_DONE = @"Thank you! It's Done!
                                            Press /spending to get detalized information about your expensions.";
         public const string DELETE_DONE = @"It's Done!";
